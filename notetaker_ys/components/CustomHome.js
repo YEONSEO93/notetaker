@@ -1,3 +1,4 @@
+// components/CustomHome.js
 import React from "react";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -5,14 +6,15 @@ import colors from "../colors";
 
 const View = styled.View`
   flex: 1;
-  padding: 0px 50px;
+  padding: 0px 30px;
   padding-top: 100px;
   background-color: ${colors.bgColor};
 `;
 const Title = styled.Text`
   color: ${colors.textColor};
-  font-size: 38px;
+  font-size: 35px;
   margin-bottom: 100px;
+  font-weight: bold;
 `;
 const Btn = styled.TouchableOpacity`
   position: absolute;
@@ -28,12 +30,12 @@ const Btn = styled.TouchableOpacity`
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 `;
 
-const Home = ({ navigation: { navigate } }) => (
+const CustomHome = ({ navigation }) => (
   <View>
-    <Title>My Diary 🌷</Title>
-    <Btn onPress={() => navigate("Write")}>
-      <Ionicons name="add" color="white" size={40} />
+    <Title>My Diary 😙🌷</Title>
+    <Btn onPress={() => navigation.navigate("Write")}>
+      <Ionicons name="star" color="white" size={30} />
     </Btn>
   </View>
 );
-export default Home;
+export default CustomHome;
