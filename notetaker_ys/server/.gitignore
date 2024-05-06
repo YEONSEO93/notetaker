@@ -1,0 +1,37 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore generated files and directories
+dist/
+web-build/
+
+# Ignore files related to native development
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Ignore Metro cache files
+.metro-cache/
+.metro-health-check*
+
+# Ignore debug files
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Ignore macOS specific files
+.DS_Store
+*.pem
+
+# Ignore local environment files
+.env*.local
+
+# Ignore TypeScript build artifacts
+*.tsbuildinfo
+
+# Ignore editor/IDE specific files
+.vscode/
+.idea/
