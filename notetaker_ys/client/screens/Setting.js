@@ -1,3 +1,4 @@
+// screens/Setting.js
 
 import React, { useState, useEffect } from 'react';
 import { View, Text, Switch, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
@@ -101,5 +102,3 @@ const SettingScreen = () => {
 };
 
 export default SettingScreen;
-
-
