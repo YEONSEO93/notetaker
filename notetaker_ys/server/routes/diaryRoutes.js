@@ -1,6 +1,8 @@
+// server/routes/diaryRoutes.js
+
 import express from 'express';
-import { createEntry, getEntries } from '../controllers/diaryController';
-import { authenticate } from '../middlewares/authMiddleware';
+import { createEntry, getEntries } from '../controllers/diaryController.js';
+import { authenticate } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 

@@ -1,24 +1,28 @@
-import { createDiaryEntry, getDiaryEntriesByUser } from '../models/diaryModel';
+// server/controllers/diaryController.js
+
+import pool from '../index.js';
 
 export const createEntry = async (req, res) => {
-  const { text, createAt } = req.body;
-  const userid = req.user.id;
+  const { text } = req.body;
+  const userId = req.user.id;
 
   try {
-    const entryId = await createDiaryEntry(text, createAt, userid);
-    res.status(201).json({ id: entryId });
-  } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    await pool.query('INSERT INTO diary (text, createAt, userid) VALUES (?, NOW(), ?)', 
+      [text, userId]
+    );
+    res.status(201).json({ message: 'Entry saved' });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to save entry' });
   }
 };
 
 export const getEntries = async (req, res) => {
-  const userid = req.user.id;
+  const userId = req.user.id;
 
   try {
-    const entries = await getDiaryEntriesByUser(userid);
-    res.status(200).json(entries);
-  } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    const [rows] = await pool.query('SELECT * FROM diary WHERE userid = ?', [userId]);
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch entries' });
   }
 };

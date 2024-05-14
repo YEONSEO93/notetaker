@@ -1,9 +1,7 @@
-// client/api.js
-
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'http://192.168.1.100:3000/api';  // Use your local IP address here
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -27,10 +25,16 @@ export const login = async (username, password) => {
 };
 
 export const signup = async (username, password, name, email) => {
-  const response = await api.post('/auth/signup', { username, password, name, email });
-  await AsyncStorage.setItem('token', response.data.token);
-  return response.data;
+  try {
+    const response = await api.post('/auth/signup', { username, password, name, email });
+    await AsyncStorage.setItem('token', response.data.token);
+    return response.data;
+  } catch (error) {
+    console.error('Sign up error:', error.response ? error.response.data : error.message);
+    throw error;
+  }
 };
+
 
 export const getDiaryEntries = async () => {
   const response = await api.get('/diary');
