@@ -1,59 +1,22 @@
-// screens/Setting.js
-
-import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, Switch, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import colors from "../colors";
+// // screens/Setting.js
+import React, { useContext } from 'react';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Switch, Button } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
+import colors from '../colors';
 
 const SettingScreen = ({ navigation }) => {
   const { user, logout } = useContext(AuthContext);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isLargeText, setIsLargeText] = useState(false);
-
-  useEffect(() => {
-    const fetchSettings = async () => {
-      try {
-        const darkModeSetting = await AsyncStorage.getItem('isDarkMode');
-        const largeTextSetting = await AsyncStorage.getItem('isLargeText');
-        setIsDarkMode(darkModeSetting === 'true');
-        setIsLargeText(largeTextSetting === 'true');
-      } catch (error) {
-        console.error('Error fetching settings:', error);
-      }
-    };
-
-    fetchSettings();
-  }, []);
-
-  const toggleDarkMode = async () => {
-    try {
-      await AsyncStorage.setItem('isDarkMode', String(!isDarkMode));
-      setIsDarkMode(!isDarkMode);
-    } catch (error) {
-      console.error('Error toggling dark mode:', error);
-    }
-  };
-
-  const toggleTextSize = async () => {
-    try {
-      await AsyncStorage.setItem('isLargeText', String(!isLargeText));
-      setIsLargeText(!isLargeText);
-    } catch (error) {
-      console.error('Error toggling text size:', error);
-    }
-  };
 
   const getDynamicStyles = () => {
     return StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor: isDarkMode ? 'black' : colors.bgColor,
+        backgroundColor: colors.bgColor,
       },
       sectionTitle: {
-        color: isDarkMode ? 'white' : colors.textColor,
+        color: colors.textColor,
         fontWeight: 'bold',
-        fontSize: isLargeText ? 20 : 16,
+        fontSize: 20,
         marginTop: 20,
         marginLeft: 20,
         marginBottom: 10,
@@ -65,23 +28,22 @@ const SettingScreen = ({ navigation }) => {
         paddingHorizontal: 20,
         paddingVertical: 12,
         borderBottomWidth: 1,
-        borderBottomColor: isDarkMode ? 'white' : colors.btnColor,
+        borderBottomColor: colors.btnColor,
       },
       text: {
-        color: isDarkMode ? 'white' : colors.textColor,
-        fontSize: isLargeText ? 20 : 16,
+        color: colors.textColor,
+        fontSize: 16,
+      },
+      button: {
+        margin: 20,
       },
     });
   };
 
   const styles = getDynamicStyles();
 
-  const handleAccountDetailsPress = () => {
-    if (user) {
-      // Navigate to account details screen or show logout options
-      // For now, let's just log the user out for demonstration purposes
-      logout();
-    } else {
+  const handleAccountPress = () => {
+    if (!user) {
       navigation.navigate('Login');
     }
   };
@@ -90,18 +52,23 @@ const SettingScreen = ({ navigation }) => {
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.sectionTitle}>Your account</Text>
-        <TouchableOpacity style={styles.item} onPress={handleAccountDetailsPress}>
-          <Text style={styles.text}>{user ? user.name : 'Login'}</Text>
+        <TouchableOpacity style={styles.item} onPress={handleAccountPress}>
+          <Text style={styles.text}>{user ? user.username : 'Login'}</Text>
         </TouchableOpacity>
+        {user && (
+          <View style={styles.button}>
+            <Button title="Logout" onPress={logout} />
+          </View>
+        )}
 
         <Text style={styles.sectionTitle}>Settings</Text>
         <View style={styles.item}>
           <Text style={styles.text}>Dark Mode</Text>
-          <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
+          <Switch />
         </View>
         <View style={styles.item}>
           <Text style={styles.text}>Large Text</Text>
-          <Switch value={isLargeText} onValueChange={toggleTextSize} />
+          <Switch />
         </View>
 
         <Text style={styles.sectionTitle}>About</Text>

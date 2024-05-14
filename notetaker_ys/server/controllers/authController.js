@@ -1,5 +1,5 @@
 
-// controllers/authController.js
+
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { db } from '../index.js';
@@ -15,12 +15,16 @@ export const signup = async (req, res) => {
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    await db.query('INSERT INTO users (username, password, name, email) VALUES (?, ?, ?, ?)', 
+    const [result] = await db.query('INSERT INTO users (username, password, name, email) VALUES (?, ?, ?, ?)', 
       [username, hashedPassword, name, email]
     );
-    const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.status(201).json({ token });
+    const user = { id: result.insertId, username, name, email };
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.status(201).json({ token, user });
   } catch (err) {
+    if (err.code === 'ER_DUP_ENTRY') {
+      return res.status(400).json({ message: 'Username already exists' });
+    }
     console.error('Error during signup:', err); // Add detailed logging
     res.status(500).json({ message: 'Failed to sign up' });
   }
@@ -42,7 +46,7 @@ export const login = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token });
+    res.json({ token, user: { id: user.id, username: user.username, name: user.name, email: user.email } });
   } catch (err) {
     console.error('Error during login:', err); // Add detailed logging
     res.status(500).json({ message: 'Server error' });
