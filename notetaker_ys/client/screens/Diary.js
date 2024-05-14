@@ -1,41 +1,31 @@
-// // screens/Diary.js
-
-// import React from 'react';
-// import { View, Text } from 'react-native';
-
-// const Diary = () => {
-//   return (
-//     <View>
-//       <Text>Diary Screen</Text>
-//     </View>
-//   );
-// };
-
-// export default Diary;
-
-
 
 // // client/screens/Diary.js
 
-// import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState, useContext } from 'react';
 // import { View, Text, FlatList, StyleSheet } from 'react-native';
 // import { getDiaryEntries } from '../api';
+// import { AuthContext } from '../context/AuthContext';
 
 // const Diary = () => {
 //   const [entries, setEntries] = useState([]);
+//   const { user } = useContext(AuthContext);
 
 //   useEffect(() => {
 //     const fetchEntries = async () => {
-//       const data = await getDiaryEntries();
-//       setEntries(data);
+//       try {
+//         const data = await getDiaryEntries(user.id);
+//         setEntries(data);
+//       } catch (err) {
+//         console.error('Failed to fetch entries', err);
+//       }
 //     };
 //     fetchEntries();
-//   }, []);
+//   }, [user]);
 
 //   const renderItem = ({ item }) => (
 //     <View style={styles.item}>
 //       <Text>{item.text}</Text>
-//       <Text>{item.createAt}</Text>
+//       <Text>{item.createdAt}</Text>
 //     </View>
 //   );
 
@@ -57,8 +47,6 @@
 // });
 
 // export default Diary;
-
-
 
 
 
@@ -88,7 +76,7 @@ const Diary = () => {
   const renderItem = ({ item }) => (
     <View style={styles.item}>
       <Text>{item.text}</Text>
-      <Text>{item.createAt}</Text>
+      <Text>{item.createdAt}</Text>
     </View>
   );
 

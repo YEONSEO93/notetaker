@@ -1,9 +1,10 @@
-// // //api.js
+
+// // client/api.js
 
 // import axios from 'axios';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// const API_BASE_URL = 'http://192.168.1.100:3000/api';  // Change to your server IP
+// const API_BASE_URL = 'http://192.168.1.100:3000/api'; // Ensure this matches your server's IP and port
 
 // const api = axios.create({
 //   baseURL: API_BASE_URL,
@@ -17,40 +18,53 @@
 //   }
 //   return config;
 // }, (error) => {
+//   console.log('API request error', error);
 //   return Promise.reject(error);
 // });
 
 // export const login = async (username, password) => {
+//   console.log('API: login initiated');
 //   const response = await api.post('/auth/login', { username, password });
-//   return { token: response.data.token, user: response.data.user };
-// };
-
-// export const signup = async (username, password, name, email) => {
-//   const response = await api.post('/auth/signup', { username, password, name, email });
-//   return { token: response.data.token, user: response.data.user };
-// };
-
-// export const getDiaryEntries = async () => {
-//   const response = await api.get('/diary');
+//   console.log('API: login successful', response.data);
+//   await AsyncStorage.setItem('token', response.data.token);
 //   return response.data;
 // };
 
-// export const createDiaryEntry = async (text) => {
-//   const response = await api.post('/diary', { text, createdAt: new Date().toISOString() });
+// export const signup = async (username, password, name, email) => {
+//   console.log('API: signup initiated');
+//   const response = await api.post('/auth/signup', { username, password, name, email });
+//   console.log('API: signup successful', response.data);
+//   await AsyncStorage.setItem('token', response.data.token);
+//   return response.data;
+// };
+
+// export const getDiaryEntries = async (userId) => {
+//   console.log('API: getDiaryEntries initiated');
+//   const response = await api.get(`/diary?userId=${userId}`);
+//   console.log('API: getDiaryEntries successful', response.data);
+//   return response.data;
+// };
+
+// export const createDiaryEntry = async (text, userId) => {
+//   console.log('API: createDiaryEntry initiated');
+//   const response = await api.post('/diary', { text, userId });
+//   console.log('API: createDiaryEntry successful', response.data);
 //   return response.data;
 // };
 
 // export const logout = async () => {
+//   console.log('API: logout initiated');
 //   await AsyncStorage.removeItem('token');
-//   await AsyncStorage.removeItem('user');
+//   console.log('API: logout successful');
 // };
 
 
+// client/api.js
 
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_BASE_URL = 'http://192.168.1.100:3000/api'; // replace with your server's IP and port
+const API_BASE_URL = 'http://192.168.1.100:3000/api'; // Ensure this matches your server's IP and port
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -84,16 +98,16 @@ export const signup = async (username, password, name, email) => {
   return response.data;
 };
 
-export const getDiaryEntries = async () => {
+export const getDiaryEntries = async (userId) => {
   console.log('API: getDiaryEntries initiated');
   const response = await api.get('/diary');
   console.log('API: getDiaryEntries successful', response.data);
   return response.data;
 };
 
-export const createDiaryEntry = async (text) => {
+export const createDiaryEntry = async (text, userId) => {
   console.log('API: createDiaryEntry initiated');
-  const response = await api.post('/diary', { text, createAt: new Date().toISOString() });
+  const response = await api.post('/diary', { text, userId });
   console.log('API: createDiaryEntry successful', response.data);
   return response.data;
 };
