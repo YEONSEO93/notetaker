@@ -1,3 +1,4 @@
+//routes/authRoutes.js
 import express from 'express';
 import { check } from 'express-validator';
 import { signup, login } from '../controllers/authController.js';
