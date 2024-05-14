@@ -1,5 +1,5 @@
-// client/context/ThemeContext.js
 
+// ThemeContext.js
 import React, { createContext, useState } from 'react';
 import colors from '../colors';
 

@@ -1,19 +1,4 @@
 
-// // server/routes/diaryRoutes.js
-
-// import express from 'express';
-// import { createEntry, getEntries } from '../controllers/diaryController.js';
-// import { authenticate } from '../middlewares/authMiddleware.js';
-
-// const router = express.Router();
-
-// router.post('/', authenticate, createEntry);
-// router.get('/', authenticate, getEntries);
-
-// export default router;
-
-
-
 // server/routes/diaryRoutes.js
 
 import express from 'express';
