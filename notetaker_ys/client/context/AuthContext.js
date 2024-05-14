@@ -1,4 +1,3 @@
-
 // client/context/AuthContext.js
 
 import React, { createContext, useState } from 'react';

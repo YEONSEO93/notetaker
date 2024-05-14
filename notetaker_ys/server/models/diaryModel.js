@@ -1,3 +1,4 @@
+//server/models/diaryModel.js
 import db from '../db';
 
 export const createDiaryEntry = async (text, createAt, userid) => {

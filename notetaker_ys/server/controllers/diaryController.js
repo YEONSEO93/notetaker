@@ -1,6 +1,4 @@
-
 // server/controllers/diaryController.js
-
 import { db } from '../index.js';
 
 export const createEntry = async (req, res) => {

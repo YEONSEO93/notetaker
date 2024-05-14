@@ -1,4 +1,4 @@
-
+//screens/Home.js
 import React from "react";
 import { StyledView, MainTitle, SubTitle, IconButton, IconContainer } from './StyledHome';
 import { Ionicons } from "@expo/vector-icons";

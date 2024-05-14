@@ -1,4 +1,4 @@
-
+//client/App.js
 import React from 'react';
 import Navigator from './navigator';
 import { AuthProvider } from './context/AuthContext';

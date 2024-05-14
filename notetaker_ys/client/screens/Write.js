@@ -1,4 +1,3 @@
-
 // client/screens/Write.js
 import React, { useState, useContext } from 'react';
 import { Alert } from 'react-native';

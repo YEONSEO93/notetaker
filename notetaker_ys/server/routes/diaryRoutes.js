@@ -1,6 +1,4 @@
-
 // server/routes/diaryRoutes.js
-
 import express from 'express';
 import { createEntry, getEntries, updateEntry, deleteEntry } from '../controllers/diaryController.js';
 import { authenticate } from '../middlewares/authMiddleware.js';

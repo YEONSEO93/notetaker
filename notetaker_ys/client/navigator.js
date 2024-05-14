@@ -1,6 +1,4 @@
-
 // client/navigator.js
-
 import React, { useContext, useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -76,6 +74,3 @@ const Navigator = () => (
 );
 
 export default Navigator;
-
-
-

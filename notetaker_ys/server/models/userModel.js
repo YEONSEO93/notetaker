@@ -1,3 +1,4 @@
+//server/models/userModel.js
 import db from '../db';
 import bcrypt from 'bcryptjs';
 
