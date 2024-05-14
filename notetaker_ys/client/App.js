@@ -1,6 +1,9 @@
-// import React from "react";
+
+
+// // App.js
+// import React, { useState } from "react";
 // import { NavigationContainer } from "@react-navigation/native";
-// import Navigator from "./navigator";  // Make sure the import path matches the filename of your navigator setup
+// import Navigator from "./navigator"; 
 
 // export default function App() {
 //   return (
@@ -11,15 +14,34 @@
 // }
 
 
-// App.js
-import React, { useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import Navigator from "./navigator"; 
+// import React from 'react';
+// import { NavigationContainer } from '@react-navigation/native';  // Ensure this import is correct
+// import Navigator from './navigator';
+// import { AuthProvider } from './context/AuthContext';
+
+// export default function App() {
+//   return (
+//     <AuthProvider>
+//       <NavigationContainer>
+//         <Navigator />
+//       </NavigationContainer>
+//     </AuthProvider>
+//   );
+// }
+
+
+
+
+// client/App.js
+
+import React from 'react';
+import Navigator from './navigator';
+import { AuthProvider } from './context/AuthContext';
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <AuthProvider>
       <Navigator />
-    </NavigationContainer>
+    </AuthProvider>
   );
 }
