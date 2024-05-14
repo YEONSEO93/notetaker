@@ -40,7 +40,7 @@
 
 // export const getDiaryEntries = async (userId) => {
 //   console.log('API: getDiaryEntries initiated');
-//   const response = await api.get(`/diary?userId=${userId}`);
+//   const response = await api.get('/diary');
 //   console.log('API: getDiaryEntries successful', response.data);
 //   return response.data;
 // };
@@ -57,6 +57,7 @@
 //   await AsyncStorage.removeItem('token');
 //   console.log('API: logout successful');
 // };
+
 
 
 // client/api.js
@@ -98,17 +99,31 @@ export const signup = async (username, password, name, email) => {
   return response.data;
 };
 
-export const getDiaryEntries = async (userId) => {
+export const getDiaryEntries = async () => {
   console.log('API: getDiaryEntries initiated');
   const response = await api.get('/diary');
   console.log('API: getDiaryEntries successful', response.data);
   return response.data;
 };
 
-export const createDiaryEntry = async (text, userId) => {
+export const createDiaryEntry = async (text) => {
   console.log('API: createDiaryEntry initiated');
-  const response = await api.post('/diary', { text, userId });
+  const response = await api.post('/diary', { text });
   console.log('API: createDiaryEntry successful', response.data);
+  return response.data;
+};
+
+export const updateDiaryEntry = async (id, text) => {
+  console.log('API: updateDiaryEntry initiated');
+  const response = await api.put(`/diary/${id}`, { text });
+  console.log('API: updateDiaryEntry successful', response.data);
+  return response.data;
+};
+
+export const deleteDiaryEntry = async (id) => {
+  console.log('API: deleteDiaryEntry initiated');
+  const response = await api.delete(`/diary/${id}`);
+  console.log('API: deleteDiaryEntry successful', response.data);
   return response.data;
 };
 
