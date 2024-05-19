@@ -1,77 +1,268 @@
-//screens/Setting.js
-import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Switch, Modal } from 'react-native';
+
+
+// // screens/Setting.js
+// import React, { useContext, useState, useEffect } from 'react';
+// import { ScrollView, Switch, Modal, StatusBar } from 'react-native';
+// import { AuthContext } from '../context/AuthContext';
+// import { ThemeContext } from '../context/ThemeContext';
+// import Licenses from './Licenses';
+// import { 
+//   Container, SectionTitle, Item, Text, ButtonContainer, Button, ButtonText, ModalView, CloseButton, CloseButtonText 
+// } from '../screens/styles/StyledSetting/';
+
+// const SettingScreen = ({ navigation }) => {
+//   const { user, logout } = useContext(AuthContext);
+//   const { theme, textSize, toggleDarkMode, toggleLargeText, isDarkMode, isLargeText } = useContext(ThemeContext);
+//   const [modalVisible, setModalVisible] = useState(false);
+
+//   useEffect(() => {
+//     StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
+//   }, [isDarkMode]);
+
+//   const handleAccountPress = () => {
+//     if (!user) {
+//       navigation.navigate('Login');
+//     }
+//   };
+
+//   return (
+//     <Container style={{ backgroundColor: theme.bgColor }}>
+//       <ScrollView>
+//         <SectionTitle style={{ color: theme.textColor }}>Your account</SectionTitle>
+//         <Item onPress={handleAccountPress}>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>{user ? user.username : 'Login'}</Text>
+//         </Item>
+//         {user && (
+//           <ButtonContainer>
+//             <Button onPress={logout} style={{ backgroundColor: theme.btnColor }}>
+//               <ButtonText style={{ fontSize: textSize }}>Logout</ButtonText>
+//             </Button>
+//           </ButtonContainer>
+//         )}
+
+//         <SectionTitle style={{ color: theme.textColor }}>Settings</SectionTitle>
+//         <Item>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>Dark Mode</Text>
+//           <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
+//         </Item>
+//         <Item>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>Large Text</Text>
+//           <Switch value={isLargeText} onValueChange={toggleLargeText} />
+//         </Item>
+
+//         <SectionTitle style={{ color: theme.textColor }}>About</SectionTitle>
+//         <Item onPress={() => setModalVisible(true)}>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>About App</Text>
+//         </Item>
+//       </ScrollView>
+
+//       <Modal
+//         animationType="slide"
+//         transparent={true}
+//         visible={modalVisible}
+//         onRequestClose={() => {
+//           setModalVisible(!modalVisible);
+//         }}
+//       >
+//         <ModalView style={{ backgroundColor: theme.bgColor }}>
+//           <CloseButton onPress={() => setModalVisible(false)}>
+//             <CloseButtonText style={{ color: theme.textColor }}>Close</CloseButtonText>
+//           </CloseButton>
+//           <Licenses />
+//         </ModalView>
+//       </Modal>
+//     </Container>
+//   );
+// };
+
+// export default SettingScreen;
+
+
+
+
+
+// // Setting.js
+// import React, { useContext, useState, useEffect } from 'react';
+// import { ScrollView, Switch, Modal, StatusBar } from 'react-native';
+// import { AuthContext } from '../context/AuthContext';
+// import { ThemeContext } from '../context/ThemeContext';
+// import Licenses from './Licenses';
+// import { 
+//   Container, SectionTitle, Item, Text, ButtonContainer, Button, ButtonText, ModalView, CloseButton, CloseButtonText 
+// } from '../screens/styles/StyledSetting/';
+
+// const SettingScreen = ({ navigation }) => {
+//   const { user, logout } = useContext(AuthContext);
+//   const { theme, textSize, toggleDarkMode, toggleLargeText, isDarkMode, isLargeText } = useContext(ThemeContext);
+//   const [modalVisible, setModalVisible] = useState(false);
+
+//   useEffect(() => {
+//     StatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
+//   }, [isDarkMode]);
+
+//   const handleAccountPress = () => {
+//     if (!user) {
+//       navigation.navigate('Login');
+//     }
+//   };
+
+//   return (
+//     <Container style={{ backgroundColor: theme.bgColor }}>
+//       <StatusBar barStyle={theme.isDarkMode ? 'light-content' : 'dark-content'} />
+//       <ScrollView>
+//         <SectionTitle style={{ color: theme.textColor }}>Your account</SectionTitle>
+//         <Item onPress={handleAccountPress}>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>{user ? user.username : 'Login'}</Text>
+//         </Item>
+//         {user && (
+//           <ButtonContainer>
+//             <Button onPress={logout} style={{ backgroundColor: theme.btnColor }}>
+//               <ButtonText style={{ fontSize: textSize }}>Logout</ButtonText>
+//             </Button>
+//           </ButtonContainer>
+//         )}
+
+//         <SectionTitle style={{ color: theme.textColor }}>Settings</SectionTitle>
+//         <Item>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>Dark Mode</Text>
+//           <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
+//         </Item>
+//         <Item>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>Large Text</Text>
+//           <Switch value={isLargeText} onValueChange={toggleLargeText} />
+//         </Item>
+
+//         <SectionTitle style={{ color: theme.textColor }}>About</SectionTitle>
+//         <Item onPress={() => setModalVisible(true)}>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>About App</Text>
+//         </Item>
+//       </ScrollView>
+
+//       <Modal
+//         animationType="slide"
+//         transparent={true}
+//         visible={modalVisible}
+//         onRequestClose={() => {
+//           setModalVisible(!modalVisible);
+//         }}
+//       >
+//         <ModalView style={{ backgroundColor: theme.bgColor }}>
+//           <CloseButton onPress={() => setModalVisible(false)}>
+//             <CloseButtonText style={{ color: theme.textColor }}>Close</CloseButtonText>
+//           </CloseButton>
+//           <Licenses />
+//         </ModalView>
+//       </Modal>
+//     </Container>
+//   );
+// };
+
+// export default SettingScreen;
+
+
+
+// // screens/Setting.js
+// import React, { useContext, useState, useEffect } from 'react';
+// import { ScrollView, Switch, Modal, StatusBar as RNStatusBar } from 'react-native';
+// import { AuthContext } from '../context/AuthContext';
+// import { ThemeContext } from '../context/ThemeContext';
+// import Licenses from './Licenses';
+// import { 
+//   Container, SectionTitle, Item, Text, ButtonContainer, Button, ButtonText, ModalView, CloseButton, CloseButtonText 
+// } from '../screens/styles/StyledSetting/';
+// import { StatusBar } from 'expo-status-bar';
+
+// const SettingScreen = ({ navigation }) => {
+//   const { user, logout } = useContext(AuthContext);
+//   const { theme, textSize, toggleDarkMode, toggleLargeText, isDarkMode, isLargeText } = useContext(ThemeContext);
+//   const [modalVisible, setModalVisible] = useState(false);
+
+//   useEffect(() => {
+//     RNStatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
+//   }, [isDarkMode]);
+
+//   const handleAccountPress = () => {
+//     if (!user) {
+//       navigation.navigate('Login');
+//     }
+//   };
+
+//   return (
+//     <Container style={{ backgroundColor: theme.bgColor }}>
+//       <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+//       <ScrollView>
+//         <SectionTitle style={{ color: theme.textColor }}>Your account</SectionTitle>
+//         <Item onPress={handleAccountPress}>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>{user ? user.username : 'Login'}</Text>
+//         </Item>
+//         {user && (
+//           <ButtonContainer>
+//             <Button onPress={logout} style={{ backgroundColor: theme.btnColor }}>
+//               <ButtonText style={{ fontSize: textSize }}>Logout</ButtonText>
+//             </Button>
+//           </ButtonContainer>
+//         )}
+
+//         <SectionTitle style={{ color: theme.textColor }}>Settings</SectionTitle>
+//         <Item>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>Dark Mode</Text>
+//           <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
+//         </Item>
+//         <Item>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>Large Text</Text>
+//           <Switch value={isLargeText} onValueChange={toggleLargeText} />
+//         </Item>
+
+//         <SectionTitle style={{ color: theme.textColor }}>About</SectionTitle>
+//         <Item onPress={() => setModalVisible(true)}>
+//           <Text style={{ color: theme.textColor, fontSize: textSize }}>About App</Text>
+//         </Item>
+//       </ScrollView>
+
+//       <Modal
+//         animationType="slide"
+//         transparent={true}
+//         visible={modalVisible}
+//         onRequestClose={() => {
+//           setModalVisible(!modalVisible);
+//         }}
+//       >
+//         <ModalView style={{ backgroundColor: theme.bgColor }}>
+//           <CloseButton onPress={() => setModalVisible(false)}>
+//             <CloseButtonText style={{ color: theme.textColor }}>Close</CloseButtonText>
+//           </CloseButton>
+//           <Licenses />
+//         </ModalView>
+//       </Modal>
+//     </Container>
+//   );
+// };
+
+// export default SettingScreen;
+
+
+
+///
+
+
+import React, { useContext, useState, useEffect } from 'react';
+import { ScrollView, Switch, Modal, StatusBar as RNStatusBar } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
-import colors from '../colors';
-import Licenses from './Licenses'; // Import the Licenses component
+import Licenses from './Licenses';
+import { 
+  Container, SectionTitle, Item, Text, ButtonContainer, Button, ButtonText, ModalView, CloseButton, CloseButtonText 
+} from '../screens/styles/StyledSetting/';
+import { StatusBar } from 'expo-status-bar';
 
 const SettingScreen = ({ navigation }) => {
   const { user, logout } = useContext(AuthContext);
   const { theme, textSize, toggleDarkMode, toggleLargeText, isDarkMode, isLargeText } = useContext(ThemeContext);
-  const [modalVisible, setModalVisible] = useState(false); // State to control modal visibility
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const getDynamicStyles = () => {
-    return StyleSheet.create({
-      container: {
-        flex: 1,
-        backgroundColor: theme.bgColor,
-      },
-      sectionTitle: {
-        color: theme.textColor,
-        fontWeight: 'bold',
-        fontSize: 20,
-        marginTop: 20,
-        marginLeft: 20,
-        marginBottom: 10,
-      },
-      item: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: theme.btnColor,
-      },
-      text: {
-        color: theme.textColor,
-        fontSize: textSize,
-      },
-      buttonContainer: {
-        margin: 20,
-        alignItems: 'center',
-      },
-      button: {
-        backgroundColor: theme.btnColor,
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 5,
-      },
-      buttonText: {
-        color: '#fff',
-        fontSize: textSize,
-        fontWeight: 'bold',
-      },
-      modalView: {
-        flex: 1,
-        backgroundColor: theme.bgColor,
-        padding: 20,
-        paddingTop: 50, // Adjust this to add space at the top
-      },
-      closeButton: {
-        alignSelf: 'flex-end',
-        marginBottom: 10,
-      },
-      closeButtonText: {
-        color: theme.textColor,
-        fontSize: 18,
-        fontWeight: 'bold',
-      },
-    });
-  };
-
-  const styles = getDynamicStyles();
+  useEffect(() => {
+    RNStatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
+  }, [isDarkMode]);
 
   const handleAccountPress = () => {
     if (!user) {
@@ -80,34 +271,35 @@ const SettingScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <Container style={{ backgroundColor: theme.bgColor }}>
+      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
       <ScrollView>
-        <Text style={styles.sectionTitle}>Your account</Text>
-        <TouchableOpacity style={styles.item} onPress={handleAccountPress}>
-          <Text style={styles.text}>{user ? user.username : 'Login'}</Text>
-        </TouchableOpacity>
+        <SectionTitle style={{ color: theme.textColor }}>Your account</SectionTitle>
+        <Item onPress={handleAccountPress}>
+          <Text style={{ color: theme.textColor, fontSize: textSize }}>{user ? user.username : 'Login'}</Text>
+        </Item>
         {user && (
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button} onPress={logout}>
-              <Text style={styles.buttonText}>Logout</Text>
-            </TouchableOpacity>
-          </View>
+          <ButtonContainer>
+            <Button onPress={logout} style={{ backgroundColor: theme.btnColor }}>
+              <ButtonText style={{ fontSize: textSize }}>Logout</ButtonText>
+            </Button>
+          </ButtonContainer>
         )}
 
-        <Text style={styles.sectionTitle}>Settings</Text>
-        <View style={styles.item}>
-          <Text style={styles.text}>Dark Mode</Text>
+        <SectionTitle style={{ color: theme.textColor }}>Settings</SectionTitle>
+        <Item>
+          <Text style={{ color: theme.textColor, fontSize: textSize }}>Dark Mode</Text>
           <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
-        </View>
-        <View style={styles.item}>
-          <Text style={styles.text}>Large Text</Text>
+        </Item>
+        <Item>
+          <Text style={{ color: theme.textColor, fontSize: textSize }}>Large Text</Text>
           <Switch value={isLargeText} onValueChange={toggleLargeText} />
-        </View>
+        </Item>
 
-        <Text style={styles.sectionTitle}>About</Text>
-        <TouchableOpacity style={styles.item} onPress={() => setModalVisible(true)}>
-          <Text style={styles.text}>About App</Text>
-        </TouchableOpacity>
+        <SectionTitle style={{ color: theme.textColor }}>About</SectionTitle>
+        <Item onPress={() => setModalVisible(true)}>
+          <Text style={{ color: theme.textColor, fontSize: textSize }}>About App</Text>
+        </Item>
       </ScrollView>
 
       <Modal
@@ -118,14 +310,14 @@ const SettingScreen = ({ navigation }) => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={styles.modalView}>
-          <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
+        <ModalView style={{ backgroundColor: theme.bgColor }}>
+          <CloseButton onPress={() => setModalVisible(false)}>
+            <CloseButtonText style={{ color: theme.textColor }}>Close</CloseButtonText>
+          </CloseButton>
           <Licenses />
-        </View>
+        </ModalView>
       </Modal>
-    </View>
+    </Container>
   );
 };
 

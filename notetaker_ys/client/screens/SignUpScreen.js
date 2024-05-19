@@ -1,6 +1,6 @@
-// // client/screens/SignUpScreen.js
+//SignUpScreen.js
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { Container, Title, Input, ErrorText, SignUpButton, ButtonText } from './styles/StyledSignUp/';
 import { AuthContext } from '../context/AuthContext';
 
 const SignUpScreen = ({ navigation }) => {
@@ -23,64 +23,35 @@ const SignUpScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-      <TextInput
-        style={styles.input}
+    <Container>
+      <Title>Sign Up</Title>
+      {error ? <ErrorText>{error}</ErrorText> : null}
+      <Input
         placeholder="Username"
         value={username}
         onChangeText={setUsername}
       />
-      <TextInput
-        style={styles.input}
+      <Input
         placeholder="Password"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
       />
-      <TextInput
-        style={styles.input}
+      <Input
         placeholder="Name"
         value={name}
         onChangeText={setName}
       />
-      <TextInput
-        style={styles.input}
+      <Input
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
       />
-      <Button title="Sign Up" onPress={handleSignUp} />
-    </View>
+      <SignUpButton onPress={handleSignUp}>
+        <ButtonText>Sign Up</ButtonText>
+      </SignUpButton>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    width: '100%',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-  },
-  error: {
-    color: 'red',
-    marginBottom: 10,
-  },
-});
 
 export default SignUpScreen;

@@ -1,5 +1,4 @@
-// client/context/AuthContext.js
-
+// // client/context/AuthContext.js
 import React, { createContext, useState } from 'react';
 import { login as apiLogin, logout as apiLogout } from '../api';
 

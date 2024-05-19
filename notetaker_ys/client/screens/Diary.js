@@ -1,16 +1,18 @@
 // screens/Diary.js
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 import { getDiaryEntries, createDiaryEntry, updateDiaryEntry, deleteDiaryEntry } from '../api';
 import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
+import { Container, Input, Button, ButtonText, Item, EntryText, EntryDate, EditButton, DeleteButton } from '../screens/styles/StyledDiary/';
+import { StatusBar } from 'expo-status-bar';
 
 const Diary = () => {
   const [entries, setEntries] = useState([]);
   const [text, setText] = useState('');
   const [editId, setEditId] = useState(null);
   const { user } = useContext(AuthContext);
-  const { theme, textSize } = useContext(ThemeContext);
+  const { theme, textSize, isDarkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchEntries = async () => {
@@ -74,16 +76,12 @@ const Diary = () => {
     if (!item || !item.id) return null; // Ensure item is not null or undefined and has an id
     const createdAt = item.createdAt ? new Date(item.createdAt).toString() : 'Unknown Date';
     return (
-      <View style={styles.item}>
-        <Text style={styles.entryText}>{item.text}</Text>
-        <Text style={styles.entryDate}>{createdAt}</Text>
-        <TouchableOpacity onPress={() => handleEdit(item)}>
-          <Text style={styles.editButton}>Edit</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleDelete(item.id)}>
-          <Text style={styles.deleteButton}>Delete</Text>
-        </TouchableOpacity>
-      </View>
+      <Item style={{ backgroundColor: theme.bgColor_light }}>
+        <EntryText style={{ color: theme.textColor }}>{item.text}</EntryText>
+        <EntryDate style={{ color: theme.textColor }}>{createdAt}</EntryDate>
+        <EditButton onPress={() => handleEdit(item)} style={{ color: theme.btnColor, fontWeight: 'bold' }}>Edit</EditButton>
+        <DeleteButton onPress={() => handleDelete(item.id)} style={{ color: 'red', fontWeight: 'bold' }}>Delete</DeleteButton>
+      </Item>
     );
   };
 
@@ -95,81 +93,27 @@ const Diary = () => {
     return item.id.toString();
   };
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.bgColor,
-      padding: 20,
-    },
-    input: {
-      width: '100%',
-      height: 40,
-      borderColor: theme.cardColor,
-      borderWidth: 1,
-      borderRadius: 5,
-      paddingHorizontal: 10,
-      marginBottom: 10,
-      backgroundColor: theme.cardColor,
-      color: theme.textColor,
-    },
-    button: {
-      width: '100%',
-      paddingVertical: 10,
-      backgroundColor: theme.btnColor,
-      borderRadius: 5,
-      alignItems: 'center',
-      marginVertical: 5,
-    },
-    buttonText: {
-      color: 'white',
-      fontWeight: 'bold',
-    },
-    item: {
-      padding: 20,
-      borderBottomWidth: 1,
-      borderBottomColor: theme.btnColor,
-      backgroundColor: theme.cardColor,
-      borderRadius: 5,
-      marginVertical: 5,
-    },
-    entryText: {
-      color: theme.textColor,
-      fontSize: textSize,
-    },
-    entryDate: {
-      color: theme.textColor,
-      fontSize: textSize - 4,
-      marginTop: 5,
-    },
-    editButton: {
-      color: theme.btnColor,
-      marginTop: 10,
-    },
-    deleteButton: {
-      color: 'red',
-      marginTop: 10,
-    },
-  });
-
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Write your feelings..."
+    <Container style={{ backgroundColor: theme.bgColor }}>
+      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+      <Input
         value={text}
         onChangeText={setText}
+        placeholder="Take quick notes here..."
         placeholderTextColor={theme.textColor}
+        style={{ color: theme.textColor, fontSize: textSize }}
       />
-      <TouchableOpacity style={styles.button} onPress={handleCreateOrUpdate}>
-        <Text style={styles.buttonText}>{editId ? 'Update' : 'Create'}</Text>
-      </TouchableOpacity>
+      <Button onPress={handleCreateOrUpdate} style={{ backgroundColor: theme.btnColor }}>
+        <ButtonText style={{ fontSize: textSize }}>{editId ? 'Update' : 'Create'}</ButtonText>
+      </Button>
       <FlatList
         data={entries}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
       />
-    </View>
+    </Container>
   );
 };
 
 export default Diary;
+

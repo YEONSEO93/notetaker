@@ -1,8 +1,8 @@
-//screens/LoginScreen.js
+//LoginScreen.js
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { Container, Title, Input, Button, ButtonText, ErrorText, OrText } from './styles/StyledLogin/';
 import { AuthContext } from '../context/AuthContext';
-import colors from '../colors';
+import colors from './styles/colors/';
 
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -24,80 +24,33 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-      <TextInput
-        style={styles.input}
+    <Container>
+      <Title>Login</Title>
+      {error ? <ErrorText>{error}</ErrorText> : null}
+      <Input
         placeholder="Username"
         value={username}
         onChangeText={setUsername}
         placeholderTextColor={colors.textColor}
       />
-      <TextInput
-        style={styles.input}
+      <Input
         placeholder="Password"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
         placeholderTextColor={colors.textColor}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      <Text style={styles.or}>or</Text>
-      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-        <Text style={styles.buttonText}>Sign Up</Text>
-      </TouchableOpacity>
-    </View>
+      <Button onPress={handleLogin}>
+        <ButtonText>Login</ButtonText>
+      </Button>
+      <OrText>or</OrText>
+      <Button onPress={handleSignUp}>
+        <ButtonText>Sign Up</ButtonText>
+      </Button>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.bgColor,
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: colors.textColor,
-    marginBottom: 20,
-  },
-  input: {
-    width: '100%',
-    height: 40,
-    borderColor: colors.cardColor,
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    color: colors.textColor,
-    backgroundColor: colors.cardColor,
-  },
-  error: {
-    color: 'red',
-    marginBottom: 10,
-  },
-  or: {
-    marginVertical: 10,
-    color: colors.textColor,
-  },
-  button: {
-    width: '100%',
-    paddingVertical: 10,
-    backgroundColor: colors.btnColor,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginVertical: 5,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-});
-
 export default LoginScreen;
+
+
