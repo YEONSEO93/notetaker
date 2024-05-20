@@ -1,6 +1,7 @@
-//LoginScreen.js
+
+// LoginScreen.js
 import React, { useState, useContext } from 'react';
-import { Container, Title, Input, Button, ButtonText, ErrorText, OrText } from './styles/StyledLogin/';
+import { Container, Title, InputContainer, Input, ButtonContainer, Button, ButtonText, ErrorText, OrText } from './styles/StyledLogin/';
 import { AuthContext } from '../context/AuthContext';
 import colors from './styles/colors/';
 
@@ -27,30 +28,33 @@ const LoginScreen = ({ navigation }) => {
     <Container>
       <Title>Login</Title>
       {error ? <ErrorText>{error}</ErrorText> : null}
-      <Input
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
-        placeholderTextColor={colors.textColor}
-      />
-      <Input
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-        placeholderTextColor={colors.textColor}
-      />
-      <Button onPress={handleLogin}>
-        <ButtonText>Login</ButtonText>
-      </Button>
-      <OrText>or</OrText>
-      <Button onPress={handleSignUp}>
-        <ButtonText>Sign Up</ButtonText>
-      </Button>
+      <InputContainer>
+        <Input
+          placeholder="Username"
+          value={username}
+          onChangeText={setUsername}
+          placeholderTextColor={colors.placeholderTextColor}
+        />
+      </InputContainer>
+      <InputContainer>
+        <Input
+          placeholder="Password"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+          placeholderTextColor={colors.placeholderTextColor}
+        />
+      </InputContainer>
+      <ButtonContainer>
+        <Button onPress={handleLogin}>
+          <ButtonText>Login</ButtonText>
+        </Button>
+        <Button onPress={handleSignUp}>
+          <ButtonText>Sign Up</ButtonText>
+        </Button>
+      </ButtonContainer>
     </Container>
   );
 };
 
 export default LoginScreen;
-
-

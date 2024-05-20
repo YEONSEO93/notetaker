@@ -1,7 +1,9 @@
-//SignUpScreen.js
+
+// SignUpScreen.js
 import React, { useState, useContext } from 'react';
 import { Container, Title, Input, ErrorText, SignUpButton, ButtonText } from './styles/StyledSignUp/';
 import { AuthContext } from '../context/AuthContext';
+import { ThemeContext } from '../context/ThemeContext'; // Assuming you want to apply theming as well
 
 const SignUpScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -10,6 +12,7 @@ const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const { signup } = useContext(AuthContext);
+  const { theme, textSize } = useContext(ThemeContext); // For theming
 
   const handleSignUp = async () => {
     try {
@@ -23,32 +26,40 @@ const SignUpScreen = ({ navigation }) => {
   };
 
   return (
-    <Container>
-      <Title>Sign Up</Title>
-      {error ? <ErrorText>{error}</ErrorText> : null}
+    <Container theme={theme}>
+      <Title theme={theme} textSize={textSize}>Sign Up</Title>
+      {error ? <ErrorText theme={theme}>{error}</ErrorText> : null}
       <Input
         placeholder="Username"
         value={username}
         onChangeText={setUsername}
+        theme={theme}
+        textSize={textSize}
       />
       <Input
         placeholder="Password"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
+        theme={theme}
+        textSize={textSize}
       />
       <Input
         placeholder="Name"
         value={name}
         onChangeText={setName}
+        theme={theme}
+        textSize={textSize}
       />
       <Input
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
+        theme={theme}
+        textSize={textSize}
       />
-      <SignUpButton onPress={handleSignUp}>
-        <ButtonText>Sign Up</ButtonText>
+      <SignUpButton onPress={handleSignUp} theme={theme}>
+        <ButtonText theme={theme} textSize={textSize}>Sign Up</ButtonText>
       </SignUpButton>
     </Container>
   );

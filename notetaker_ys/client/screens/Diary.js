@@ -1,10 +1,11 @@
+
 // // screens/Diary.js
 // import React, { useEffect, useState, useContext } from 'react';
 // import { FlatList, Alert } from 'react-native';
 // import { getDiaryEntries, createDiaryEntry, updateDiaryEntry, deleteDiaryEntry } from '../api';
 // import { AuthContext } from '../context/AuthContext';
 // import { ThemeContext } from '../context/ThemeContext';
-// import { Container, Input, Button, ButtonText, Item, EntryText, EntryDate, EditButton, DeleteButton } from '../screens/styles/StyledDiary/';
+// import { Container, Input, Button, ButtonText, Item, EntryText, EntryDate, ButtonContainer, EditButton, DeleteButton, ButtonLabelText } from '../screens/styles/StyledDiary/';
 // import { StatusBar } from 'expo-status-bar';
 
 // const Diary = () => {
@@ -76,11 +77,17 @@
 //     if (!item || !item.id) return null; // Ensure item is not null or undefined and has an id
 //     const createdAt = item.createdAt ? new Date(item.createdAt).toString() : 'Unknown Date';
 //     return (
-//       <Item style={{ backgroundColor: theme.bgColor_light }}>
-//         <EntryText style={{ color: theme.textColor }}>{item.text}</EntryText>
-//         <EntryDate style={{ color: theme.textColor }}>{createdAt}</EntryDate>
-//         <EditButton onPress={() => handleEdit(item)} style={{ color: theme.btnColor, fontWeight: 'bold' }}>Edit</EditButton>
-//         <DeleteButton onPress={() => handleDelete(item.id)} style={{ color: 'red', fontWeight: 'bold' }}>Delete</DeleteButton>
+//       <Item theme={theme} textSize={textSize}>
+//         <EntryText theme={theme} textSize={textSize}>{item.text}</EntryText>
+//         <EntryDate theme={theme} textSize={textSize - 4}>{createdAt}</EntryDate>
+//         <ButtonContainer>
+//           <EditButton onPress={() => handleEdit(item)} theme={theme} textSize={textSize}>
+//             <ButtonLabelText theme={theme} textSize={textSize}>Edit</ButtonLabelText>
+//           </EditButton>
+//           <DeleteButton onPress={() => handleDelete(item.id)} theme={theme} textSize={textSize}>
+//             <ButtonLabelText theme={theme} textSize={textSize}>Delete</ButtonLabelText>
+//           </DeleteButton>
+//         </ButtonContainer>
 //       </Item>
 //     );
 //   };
@@ -94,17 +101,18 @@
 //   };
 
 //   return (
-//     <Container style={{ backgroundColor: theme.bgColor }}>
+//     <Container theme={theme}>
 //       <StatusBar style={isDarkMode ? 'light' : 'dark'} />
 //       <Input
 //         value={text}
 //         onChangeText={setText}
 //         placeholder="Take quick notes here..."
 //         placeholderTextColor={theme.textColor}
-//         style={{ color: theme.textColor, fontSize: textSize }}
+//         theme={theme}
+//         textSize={textSize}
 //       />
-//       <Button onPress={handleCreateOrUpdate} style={{ backgroundColor: theme.btnColor }}>
-//         <ButtonText style={{ fontSize: textSize }}>{editId ? 'Update' : 'Create'}</ButtonText>
+//       <Button onPress={handleCreateOrUpdate} theme={theme}>
+//         <ButtonText theme={theme} textSize={textSize}>{editId ? 'Update' : 'Create'}</ButtonText>
 //       </Button>
 //       <FlatList
 //         data={entries}
@@ -120,13 +128,15 @@
 
 
 
+
 // screens/Diary.js
 import React, { useEffect, useState, useContext } from 'react';
 import { FlatList, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { getDiaryEntries, createDiaryEntry, updateDiaryEntry, deleteDiaryEntry } from '../api';
 import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
-import { Container, Input, Button, ButtonText, Item, EntryText, EntryDate, EditButton, DeleteButton } from '../screens/styles/StyledDiary/';
+import { Container, Input, Button, ButtonText, Item, EntryText, EntryDate, ButtonContainer, EditButton, DeleteButton, ButtonLabelText } from '../screens/styles/StyledDiary/';
 import { StatusBar } from 'expo-status-bar';
 
 const Diary = () => {
@@ -198,11 +208,19 @@ const Diary = () => {
     if (!item || !item.id) return null; // Ensure item is not null or undefined and has an id
     const createdAt = item.createdAt ? new Date(item.createdAt).toString() : 'Unknown Date';
     return (
-      <Item style={{ backgroundColor: theme.bgColor_light }} theme={theme} textSize={textSize}>
-        <EntryText style={{ color: theme.textColor }} theme={theme} textSize={textSize}>{item.text}</EntryText>
-        <EntryDate style={{ color: theme.textColor }} theme={theme} textSize={textSize - 4}>{createdAt}</EntryDate>
-        <EditButton onPress={() => handleEdit(item)} theme={theme} textSize={textSize} style={{ color: theme.btnColor, fontWeight: 'bold' }}>Edit</EditButton>
-        <DeleteButton onPress={() => handleDelete(item.id)} theme={theme} textSize={textSize} style={{ color: 'red', fontWeight: 'bold' }}>Delete</DeleteButton>
+      <Item theme={theme} textSize={textSize}>
+        <EntryText theme={theme} textSize={textSize}>{item.text}</EntryText>
+        <EntryDate theme={theme} textSize={textSize - 4}>{createdAt}</EntryDate>
+        <ButtonContainer>
+          <EditButton onPress={() => handleEdit(item)} theme={theme} textSize={textSize}>
+            <Ionicons name="create-outline" size={textSize} color="white" />
+            <ButtonLabelText theme={theme} textSize={textSize}>Edit</ButtonLabelText>
+          </EditButton>
+          <DeleteButton onPress={() => handleDelete(item.id)} theme={theme} textSize={textSize}>
+            <Ionicons name="trash-outline" size={textSize} color="white" />
+            <ButtonLabelText theme={theme} textSize={textSize}>Delete</ButtonLabelText>
+          </DeleteButton>
+        </ButtonContainer>
       </Item>
     );
   };
@@ -216,7 +234,7 @@ const Diary = () => {
   };
 
   return (
-    <Container style={{ backgroundColor: theme.bgColor }} theme={theme}>
+    <Container theme={theme}>
       <StatusBar style={isDarkMode ? 'light' : 'dark'} />
       <Input
         value={text}
@@ -225,7 +243,6 @@ const Diary = () => {
         placeholderTextColor={theme.textColor}
         theme={theme}
         textSize={textSize}
-        style={{ color: theme.textColor }}
       />
       <Button onPress={handleCreateOrUpdate} theme={theme}>
         <ButtonText theme={theme} textSize={textSize}>{editId ? 'Update' : 'Create'}</ButtonText>
