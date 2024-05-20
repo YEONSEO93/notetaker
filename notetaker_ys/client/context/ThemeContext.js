@@ -48,6 +48,7 @@ export const ThemeProvider = ({ children }) => {
     textColor: isDarkMode ? colors.text_darkmode : colors.textColor,
     cardColor: isDarkMode ? colors.card_darkmode : colors.cardColor,
     btnColor: isDarkMode ? colors.btn_darkmode : colors.btnColor,
+    inputBgColor: isDarkMode ? colors.input_bg_darkmode : colors.input_bg_lightmode,
     white: isDarkMode ? colors.bg_darkmode : colors.white,
   };
 

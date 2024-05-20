@@ -93,7 +93,7 @@ export const Input = styled.TextInput`
   border-radius: 20px;
   padding-horizontal: 10px;
   margin-bottom: 10px;
-  background-color: ${(props) => props.theme.bgColor_light || colors.bgColor_light};
+  background-color: ${(props) => props.theme.inputBgColor || colors.bgColor_light};
   color: ${(props) => props.theme.textColor || colors.textColor};
   font-size: ${(props) => props.textSize}px;
 `;

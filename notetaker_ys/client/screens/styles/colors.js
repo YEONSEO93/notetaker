@@ -10,6 +10,8 @@ const colors = {
   text_darkmode: "#ffffff",
   card_darkmode: "#1e1e1e", // Darker background for cards
   btn_darkmode: "#BB86FC", // Light button color
+  input_bg_lightmode: '#FFFFFF',
+  input_bg_darkmode: '#333333',
 };
 
 export default colors;
