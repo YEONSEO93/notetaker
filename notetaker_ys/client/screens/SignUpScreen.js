@@ -21,14 +21,14 @@ const SignUpScreen = ({ navigation }) => {
       navigation.navigate('Home');
     } catch (err) {
       console.log("Sign up failed", err);
-      setError('Failed to sign up');
+      setError(err.message || 'Failed to sign up');
     }
   };
 
   return (
     <Container theme={theme}>
       <Title theme={theme} textSize={textSize}>Sign Up</Title>
-      {error ? <ErrorText theme={theme}>{error}</ErrorText> : null}
+      {error ? <ErrorText theme={theme} textSize={textSize}>{error}</ErrorText> : null}
       <Input
         placeholder="Username"
         value={username}
@@ -66,3 +66,4 @@ const SignUpScreen = ({ navigation }) => {
 };
 
 export default SignUpScreen;
+

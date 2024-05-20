@@ -20,21 +20,42 @@ api.interceptors.request.use(async (config) => {
   return Promise.reject(error);
 });
 
-export const login = async (username, password) => {
-  console.log('API: login initiated');
-  const response = await api.post('/auth/login', { username, password });
-  console.log('API: login successful', response.data);
-  await AsyncStorage.setItem('token', response.data.token);
-  return response.data;
-};
+// export const login = async (username, password) => {
+//   console.log('API: login initiated');
+//   const response = await api.post('/auth/login', { username, password });
+//   console.log('API: login successful', response.data);
+//   await AsyncStorage.setItem('token', response.data.token);
+//   return response.data;
+// };
+
+// export const signup = async (username, password, name, email) => {
+//   console.log('API: signup initiated');
+//   const response = await api.post('/auth/signup', { username, password, name, email });
+//   console.log('API: signup successful', response.data);
+//   await AsyncStorage.setItem('token', response.data.token);
+//   return response.data;
+// };
 
 export const signup = async (username, password, name, email) => {
-  console.log('API: signup initiated');
-  const response = await api.post('/auth/signup', { username, password, name, email });
-  console.log('API: signup successful', response.data);
-  await AsyncStorage.setItem('token', response.data.token);
-  return response.data;
+  try {
+    const response = await api.post('/auth/signup', { username, password, name, email });
+    await AsyncStorage.setItem('token', response.data.token);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || new Error('Sign up failed');
+  }
 };
+
+export const login = async (username, password) => {
+  try {
+    const response = await api.post('/auth/login', { username, password });
+    await AsyncStorage.setItem('token', response.data.token);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || new Error('Login failed');
+  }
+};
+
 
 export const getDiaryEntries = async () => {
   console.log('API: getDiaryEntries initiated');
