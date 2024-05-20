@@ -22,6 +22,7 @@ To contribute to the development of the Notetaker App, follow these steps:
 - Dark mode and large text settings
 - Splash screen
 - Responsive and user-friendly interface
+- API documentation using Swagger
 
 ## Dependencies
 
@@ -47,8 +48,10 @@ To contribute to the development of the Notetaker App, follow these steps:
 - `dotenv`
 - `cors`
 - `express-validator`
+- `swagger-jsdoc`
+- `swagger-ui-express`
 
-### Installation
+## Installation
 
 1. Clone the repository.
 2. Install dependencies:
@@ -59,12 +62,16 @@ To contribute to the development of the Notetaker App, follow these steps:
    npm install
    ```
 
-### Start the server:
+## Start the Server
 
 cd server
 nodemon start
 
-### Start the mobile app:
+## Start the Mobile App
 
 cd client
 npx expo start
+
+## API Documentation
+
+http://localhost:3000/api-docs
