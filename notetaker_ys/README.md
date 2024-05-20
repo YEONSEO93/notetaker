@@ -75,3 +75,9 @@ npx expo start
 ## API Documentation
 
 http://localhost:3000/api-docs
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+This version is concise and contains all the necessary information without the additional summary.
