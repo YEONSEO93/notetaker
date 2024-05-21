@@ -41,7 +41,7 @@ export const ButtonText = styled.Text`
 export const Item = styled.View`
   padding: 20px;
   border-bottom-width: 1px;
-  border-bottom-color: ${(props) => props.theme.bgColor || colors.bgColor_light};
+  border-bottom-color: ${(props) => props.theme.textColor || colors.bgColor_light};
   background-color: ${(props) => props.theme.bgColor || colors.bgColor_light};
   border-radius: 20px;
   margin-vertical: 2px;

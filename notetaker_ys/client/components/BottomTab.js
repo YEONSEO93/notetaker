@@ -23,6 +23,12 @@ const IconContainer = styled.TouchableOpacity`
   border-radius: ${(props) => props.iconSize / 2}px;
 `;
 
+const TabLabel = styled.Text`
+  color: ${(props) => props.theme.textColor};
+  font-size: ${(props) => props.textSize}px;
+  text-align: center;
+`;
+
 const BottomTab = () => {
   const navigation = useNavigation();
   const { theme, textSize } = useContext(ThemeContext);
@@ -58,12 +64,15 @@ const BottomTab = () => {
       <Container theme={theme}>
         <IconContainer onPress={() => goToScreen("Home")} theme={theme} iconSize={iconSize}>
           <Ionicons name="planet-outline" size={iconSize} color={theme.textColor} />
+          <TabLabel theme={theme} textSize={textSize}>Home</TabLabel>
         </IconContainer>
         <IconContainer onPress={() => goToScreen("Diary")} theme={theme} iconSize={iconSize}>
           <Ionicons name="book-outline" size={iconSize} color={theme.textColor} />
+          <TabLabel theme={theme} textSize={textSize}>Diary</TabLabel>
         </IconContainer>
         <IconContainer onPress={() => goToScreen("Setting")} theme={theme} iconSize={iconSize}>
           <Ionicons name="ellipsis-horizontal-outline" size={iconSize} color={theme.textColor} />
+          <TabLabel theme={theme} textSize={textSize}>Setting</TabLabel>
         </IconContainer>
       </Container>
       {showLogin && <LoginScreen onSuccess={handleLoginSuccess} />}

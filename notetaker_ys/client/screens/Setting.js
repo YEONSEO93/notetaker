@@ -1,14 +1,10 @@
+
 // // screens/Setting.js
 
-
-///
-
-
-import React, { useContext, useState, useEffect } from 'react';
-import { ScrollView, Switch, Modal, StatusBar as RNStatusBar } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { ScrollView, Switch, Modal } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
-import Licenses from './Licenses';
 import { 
   Container, SectionTitle, Item, Text, ButtonContainer, Button, ButtonText, ModalView, CloseButton, CloseButtonText 
 } from '../screens/styles/StyledSetting/';
@@ -18,10 +14,6 @@ const SettingScreen = ({ navigation }) => {
   const { user, logout } = useContext(AuthContext);
   const { theme, textSize, toggleDarkMode, toggleLargeText, isDarkMode, isLargeText } = useContext(ThemeContext);
   const [modalVisible, setModalVisible] = useState(false);
-
-  useEffect(() => {
-    RNStatusBar.setBarStyle(isDarkMode ? 'light-content' : 'dark-content');
-  }, [isDarkMode]);
 
   const handleAccountPress = () => {
     if (!user) {
@@ -56,30 +48,12 @@ const SettingScreen = ({ navigation }) => {
         </Item>
 
         <SectionTitle style={{ color: theme.textColor }}>About</SectionTitle>
-        <Item onPress={() => setModalVisible(true)}>
+        <Item onPress={() => navigation.navigate('About')}>
           <Text style={{ color: theme.textColor, fontSize: textSize }}>About App</Text>
         </Item>
       </ScrollView>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <ModalView style={{ backgroundColor: theme.bgColor }}>
-          <CloseButton onPress={() => setModalVisible(false)}>
-            <CloseButtonText style={{ color: theme.textColor }}>Close</CloseButtonText>
-          </CloseButton>
-          <Licenses />
-        </ModalView>
-      </Modal>
     </Container>
   );
 };
 
 export default SettingScreen;
-
-

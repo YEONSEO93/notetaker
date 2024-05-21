@@ -1,37 +1,41 @@
-// Licenses.js
+
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
-const licenses = require('../assets/licenses.json'); // Correct path to licenses.json
+import { ScrollView, View, Text } from 'react-native';
+import styled from 'styled-components/native';
+const licenses = require('../assets/licenses.json'); // Ensure this path is correct
+
+const Container = styled.ScrollView`
+  flex: 1;
+  background-color: ${(props) => props.theme.bgColor};
+  padding: 20px;
+`;
+
+const LicenseItem = styled.View`
+  margin-bottom: 15px;
+`;
+
+const LicenseName = styled.Text`
+  color: ${(props) => props.theme.textColor};
+  font-weight: bold;
+  font-size: 16px;
+`;
+
+const LicenseText = styled.Text`
+  color: ${(props) => props.theme.textColor};
+  font-size: 14px;
+`;
 
 const Licenses = () => {
   return (
-    <ScrollView style={styles.container}>
+    <Container>
       {Object.entries(licenses).map(([key, value]) => (
-        <View key={key} style={styles.licenseItem}>
-          <Text style={styles.licenseName}>{key}</Text>
-          <Text style={styles.licenseText}>{value.licenses}</Text>
-        </View>
+        <LicenseItem key={key}>
+          <LicenseName>{key}</LicenseName>
+          <LicenseText>{value.licenses}</LicenseText>
+        </LicenseItem>
       ))}
-    </ScrollView>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-    backgroundColor: '#fff',
-  },
-  licenseItem: {
-    marginBottom: 15,
-  },
-  licenseName: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  licenseText: {
-    fontSize: 14,
-  },
-});
-
 export default Licenses;
-

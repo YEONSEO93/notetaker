@@ -66,3 +66,11 @@ export const CloseButtonText = styled.Text`
   font-weight: bold;
 `;
 
+
+const TabLabel = styled.Text`
+  color: ${(props) => props.theme.textColor};
+  font-size: ${(props) => props.textSize}px;
+  text-align: center;
+`;
+
+

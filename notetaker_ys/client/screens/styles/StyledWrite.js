@@ -24,7 +24,7 @@ export const TextInput = styled.TextInput`
   padding: 10px 20px;
   font-size: ${(props) => props.textSize}px;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.input_bg_lightmode || colors.input_bg_lightmode};
 `;
 
 export const Btn = styled.TouchableOpacity`

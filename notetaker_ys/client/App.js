@@ -1,13 +1,13 @@
 
 // client/App.js
 import React, { useCallback, useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { View, StatusBar as RNStatusBar } from 'react-native';
 import Entypo from '@expo/vector-icons/Entypo';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 import Navigator from './navigator';
 import { AuthProvider } from './context/AuthContext';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider, ThemeContext } from './context/ThemeContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -51,3 +51,4 @@ const App = () => {
 };
 
 export default App;
+
