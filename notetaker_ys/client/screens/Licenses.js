@@ -1,7 +1,8 @@
+// // client/screens/Licenses
 
-import React from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import React, { useContext } from 'react';
 import styled from 'styled-components/native';
+import { ThemeContext } from '../context/ThemeContext';
 const licenses = require('../assets/licenses.json'); // Ensure this path is correct
 
 const Container = styled.ScrollView`
@@ -17,21 +18,23 @@ const LicenseItem = styled.View`
 const LicenseName = styled.Text`
   color: ${(props) => props.theme.textColor};
   font-weight: bold;
-  font-size: 16px;
+  font-size: ${(props) => props.textSize}px; /* Adjust based on textSize */
 `;
 
 const LicenseText = styled.Text`
   color: ${(props) => props.theme.textColor};
-  font-size: 14px;
+  font-size: ${(props) => props.textSize}px; /* Adjust based on textSize */
 `;
 
 const Licenses = () => {
+  const { theme, textSize } = useContext(ThemeContext);
+
   return (
-    <Container>
+    <Container theme={theme}>
       {Object.entries(licenses).map(([key, value]) => (
         <LicenseItem key={key}>
-          <LicenseName>{key}</LicenseName>
-          <LicenseText>{value.licenses}</LicenseText>
+          <LicenseName theme={theme} textSize={textSize}>{key}</LicenseName>
+          <LicenseText theme={theme} textSize={textSize}>{value.licenses}</LicenseText>
         </LicenseItem>
       ))}
     </Container>
