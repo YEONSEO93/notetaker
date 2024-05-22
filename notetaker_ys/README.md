@@ -19,6 +19,7 @@ To contribute to the development of the Notetaker App, follow these steps:
 
 - User authentication (sign up and login)
 - Create, read, update, and delete diary entries
+- Search function to filter diary entries
 - Dark mode and large text settings
 - Splash screen
 - Responsive and user-friendly interface

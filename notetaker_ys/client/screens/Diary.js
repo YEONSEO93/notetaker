@@ -1,7 +1,8 @@
+
 // screens/Diary.js
 
 import React, { useEffect, useState, useContext } from 'react';
-import { FlatList, Alert, View } from 'react-native';
+import { FlatList, Alert, View, RefreshControl } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { getDiaryEntries, createDiaryEntry, updateDiaryEntry, deleteDiaryEntry } from '../api';
 import { AuthContext } from '../context/AuthContext';
@@ -14,21 +15,28 @@ const Diary = () => {
   const [text, setText] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [editId, setEditId] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
   const { user } = useContext(AuthContext);
   const { theme, textSize, isDarkMode } = useContext(ThemeContext);
 
+  const fetchEntries = async () => {
+    try {
+      const data = await getDiaryEntries();
+      const validData = data.filter(item => item.id); // Filter out entries without id
+      setEntries(validData);
+    } catch (err) {
+      console.error('Failed to fetch entries', err);
+    }
+  };
+
   useEffect(() => {
-    const fetchEntries = async () => {
-      try {
-        const data = await getDiaryEntries();
-        const validData = data.filter(item => item.id); // Filter out entries without id
-        setEntries(validData);
-      } catch (err) {
-        console.error('Failed to fetch entries', err);
-      }
-    };
     fetchEntries();
   }, []);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchEntries().then(() => setRefreshing(false));
+  };
 
   const handleCreateOrUpdate = async () => {
     if (text.trim() === '') {
@@ -135,6 +143,9 @@ const Diary = () => {
         data={filteredEntries}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       />
     </Container>
   );
