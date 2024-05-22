@@ -26,7 +26,8 @@ const Write = ({ navigation }) => {
       Alert.alert('Entry saved');
       navigation.navigate('Diary');
     } catch (err) {
-      Alert.alert('Failed to save entry');
+      Alert.alert('Failed to save entry', 'Please check your internet connection and try again.');
+      console.error('Failed to save entry', err);
     }
   };
 
@@ -63,4 +64,3 @@ const Write = ({ navigation }) => {
 };
 
 export default Write;
-

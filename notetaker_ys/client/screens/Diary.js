@@ -1,4 +1,3 @@
-
 // screens/Diary.js
 
 import React, { useEffect, useState, useContext } from 'react';
@@ -25,6 +24,7 @@ const Diary = () => {
       const validData = data.filter(item => item.id); // Filter out entries without id
       setEntries(validData);
     } catch (err) {
+      Alert.alert('Failed to fetch entries', 'Please check your internet connection and try again.');
       console.error('Failed to fetch entries', err);
     }
   };
@@ -52,6 +52,7 @@ const Diary = () => {
         setText('');
         Alert.alert('Entry updated');
       } catch (err) {
+        Alert.alert('Failed to update entry', 'Please check your internet connection and try again.');
         console.error('Failed to update entry', err);
       }
     } else {
@@ -63,6 +64,7 @@ const Diary = () => {
         setText('');
         Alert.alert('Entry created');
       } catch (err) {
+        Alert.alert('Failed to create entry', 'Please check your internet connection and try again.');
         console.error('Failed to create entry', err);
       }
     }
@@ -79,6 +81,7 @@ const Diary = () => {
       setEntries(entries.filter(entry => entry.id !== id));
       Alert.alert('Entry deleted');
     } catch (err) {
+      Alert.alert('Failed to delete entry', 'Please check your internet connection and try again.');
       console.error('Failed to delete entry', err);
     }
   };

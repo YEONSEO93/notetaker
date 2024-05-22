@@ -1,1 +1,26 @@
 2024-05-22T09:43:23.216Z [32minfo[39m: Server is running on port 3000
+2024-05-22T10:30:09.540Z [32minfo[39m: Server is running on port 3000
+2024-05-22T10:30:11.788Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:30:11 +0000] "POST /api/auth/login HTTP/1.1" 200 225 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:30:17.096Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:30:17 +0000] "GET /api/diary?search= HTTP/1.1" 200 2 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:30:24.428Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:30:24 +0000] "POST /api/diary HTTP/1.1" 201 25 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:30:26.688Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:30:26 +0000] "GET /api/diary?search= HTTP/1.1" 200 77 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:34:39.215Z [32minfo[39m: Server is running on port 3000
+2024-05-22T10:37:27.959Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:37:27 +0000] "POST /api/auth/login HTTP/1.1" 400 33 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:37:34.252Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:37:34 +0000] "POST /api/auth/login HTTP/1.1" 200 225 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:37:38.407Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:37:38 +0000] "GET /api/diary?search= HTTP/1.1" 304 - "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:38:56.746Z [32minfo[39m: Server is running on port 3000
+2024-05-22T10:41:07.909Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:41:07 +0000] "GET /api/diary?search= HTTP/1.1" 304 - "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:41:10.132Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:41:10 +0000] "GET /api/diary?search= HTTP/1.1" 304 - "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:41:11.527Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:41:11 +0000] "GET /api/diary?search= HTTP/1.1" 304 - "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:41:13.322Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:41:13 +0000] "POST /api/diary HTTP/1.1" 201 25 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:41:15.146Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:41:15 +0000] "GET /api/diary?search= HTTP/1.1" 200 152 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:42:30.254Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:42:30 +0000] "GET /api/diary?search= HTTP/1.1" 304 - "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:49:16.972Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:49:16 +0000] "POST /api/auth/login HTTP/1.1" 200 225 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:49:20.907Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:49:20 +0000] "GET /api/diary?search= HTTP/1.1" 304 - "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:52:01.819Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:52:01 +0000] "POST /api/auth/login HTTP/1.1" 200 225 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:52:53.971Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:52:53 +0000] "GET /api/diary?search= HTTP/1.1" 304 - "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:53:01.611Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:53:01 +0000] "DELETE /api/diary/117 HTTP/1.1" 200 27 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:54:16.669Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:54:16 +0000] "POST /api/auth/login HTTP/1.1" 200 225 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:54:19.815Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:54:19 +0000] "GET /api/diary?search= HTTP/1.1" 200 76 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:54:21.999Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:54:21 +0000] "POST /api/diary HTTP/1.1" 201 25 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
+2024-05-22T10:54:24.473Z [32minfo[39m: ::ffff:192.168.1.101 - - [22/May/2024:10:54:24 +0000] "GET /api/diary?search= HTTP/1.1" 200 151 "-" "Expo/1017614 CFNetwork/1410.0.3 Darwin/22.6.0"
