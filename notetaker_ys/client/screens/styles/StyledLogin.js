@@ -10,7 +10,7 @@ export const Container = styled.View`
   align-items: center;
   background-color: ${(props) => props.theme.bgColor};
   padding-horizontal: 20px;
-  padding-top: 150px;
+  padding-top: 120px;
 `;
 
 export const Title = styled.Text`

@@ -1,17 +1,18 @@
 // screens/Diary.js
 
 import React, { useEffect, useState, useContext } from 'react';
-import { FlatList, Alert } from 'react-native';
+import { FlatList, Alert, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { getDiaryEntries, createDiaryEntry, updateDiaryEntry, deleteDiaryEntry } from '../api';
 import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
-import { Container, Input, Button, ButtonText, Item, EntryText, EntryDate, ButtonContainer, EditButton, DeleteButton, ButtonLabelText } from '../screens/styles/StyledDiary/';
+import { Container, Input, Button, ButtonText, Item, EntryText, EntryDate, ButtonContainer, EditButton, DeleteButton, ButtonLabelText, SearchBar, SearchContainer } from '../screens/styles/StyledDiary/';
 import { StatusBar } from 'expo-status-bar';
 
 const Diary = () => {
   const [entries, setEntries] = useState([]);
   const [text, setText] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [editId, setEditId] = useState(null);
   const { user } = useContext(AuthContext);
   const { theme, textSize, isDarkMode } = useContext(ThemeContext);
@@ -103,9 +104,22 @@ const Diary = () => {
     return item.id.toString();
   };
 
+  const filteredEntries = entries.filter(entry => entry.text.toLowerCase().includes(searchTerm.toLowerCase()));
+
   return (
     <Container theme={theme}>
       <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+      <SearchContainer>
+        <Ionicons name="search-outline" size={textSize} color={theme.textColor} />
+        <SearchBar
+          value={searchTerm}
+          onChangeText={setSearchTerm}
+          placeholder="Search entries..."
+          placeholderTextColor={theme.textColor}
+          theme={theme}
+          textSize={textSize}
+        />
+      </SearchContainer>
       <Input
         value={text}
         onChangeText={setText}
@@ -118,7 +132,7 @@ const Diary = () => {
         <ButtonText theme={theme} textSize={textSize}>{editId ? 'Update' : 'Create'}</ButtonText>
       </Button>
       <FlatList
-        data={entries}
+        data={filteredEntries}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
       />

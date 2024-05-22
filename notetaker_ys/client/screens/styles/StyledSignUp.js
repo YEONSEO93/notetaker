@@ -6,7 +6,7 @@ export const Container = styled.View`
   flex: 1;
   background-color: ${(props) => props.theme.bgColor};
   padding: 20px;
-  padding-top: 150px; /* Adjusted padding for better alignment */
+  padding-top: 100px; /* Adjusted padding for better alignment */
 `;
 
 export const Title = styled.Text`

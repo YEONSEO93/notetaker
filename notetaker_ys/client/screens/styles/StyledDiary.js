@@ -1,3 +1,4 @@
+
 // styles/StyledDiary.js
 
 import styled from 'styled-components/native';
@@ -91,3 +92,24 @@ export const ButtonLabelText = styled.Text`
   font-weight: bold;
   margin-left: 5px;
 `;
+
+export const SearchContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  background-color: ${(props) => props.theme.inputBackground};
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  border-width: 1px;
+  border-color: ${(props) => props.theme.textColor || colors.textColor};
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+export const SearchBar = styled.TextInput`
+  background-color: ${(props) => props.theme.inputBackground};
+  color: ${(props) => props.theme.textColor};
+  font-size: ${(props) => props.textSize}px;
+  flex: 1;
+  padding: 10px;
+`;
+ 

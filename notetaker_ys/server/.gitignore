@@ -35,3 +35,8 @@ yarn-error.*
 # Ignore editor/IDE specific files
 .vscode/
 .idea/
+
+# Ignore log files
+*.log
+logs/
+app.log
