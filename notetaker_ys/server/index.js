@@ -1,17 +1,19 @@
-
 // server/index.js
+
 import express from 'express';
-import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import mysql from 'mysql2';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+import { createPool } from 'mysql2';
 import authRoutes from './routes/authRoutes.js';
 import diaryRoutes from './routes/diaryRoutes.js';
-import setupSwagger from './swagger.js'; // Import the Swagger setup file
+import errorHandler from './middlewares/errorMiddleware.js';
+import logger from './logger.js';
 
 dotenv.config();
 
-const pool = mysql.createPool({
+const pool = createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   database: process.env.DB_NAME,
@@ -20,21 +22,21 @@ const pool = mysql.createPool({
 
 const app = express();
 
-app.use(cors());
+app.use(cors());  // Enable CORS
 app.use(bodyParser.json());
+app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/diary', diaryRoutes);
 
-setupSwagger(app); // Use the Swagger setup
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  logger.info(`Server is running on port ${PORT}`);
 });
 
 export default app;
 export const db = pool.promise();
-
-///

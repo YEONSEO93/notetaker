@@ -63,3 +63,4 @@ const Write = ({ navigation }) => {
 };
 
 export default Write;
+

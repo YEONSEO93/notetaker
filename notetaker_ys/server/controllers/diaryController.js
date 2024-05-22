@@ -1,7 +1,16 @@
 // server/controllers/diaryController.js
+
 import { db } from '../index.js';
 
-export const createEntry = async (req, res) => {
+/**
+ * Create a new diary entry.
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @returns {Promise<void>}
+ */
+export const createEntry = async (req, res, next) => {
   const { text } = req.body;
   const userId = req.user.id;
 
@@ -11,24 +20,47 @@ export const createEntry = async (req, res) => {
     );
     res.status(201).json({ message: 'Entry saved' });
   } catch (err) {
-    console.error('Failed to save entry', err);
-    res.status(500).json({ message: 'Failed to save entry' });
+    next(err); // Pass the error to the global error handler
   }
 };
 
-export const getEntries = async (req, res) => {
+/**
+ * Get all diary entries for the authenticated user.
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @returns {Promise<void>}
+ */
+export const getEntries = async (req, res, next) => {
   const userId = req.user.id;
+  const { search } = req.query;
 
   try {
-    const [rows] = await db.query('SELECT * FROM diary WHERE userId = ?', [userId]);
+    let query = 'SELECT * FROM diary WHERE userId = ?';
+    const params = [userId];
+
+    if (search) {
+      query += ' AND text LIKE ?';
+      params.push(`%${search}%`);
+    }
+
+    const [rows] = await db.query(query, params);
     res.json(rows);
   } catch (err) {
-    console.error('Failed to fetch entries', err);
-    res.status(500).json({ message: 'Failed to fetch entries' });
+    next(err); // Pass the error to the global error handler
   }
 };
 
-export const updateEntry = async (req, res) => {
+/**
+ * Update an existing diary entry.
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @returns {Promise<void>}
+ */
+export const updateEntry = async (req, res, next) => {
   const { id } = req.params;
   const { text } = req.body;
   const userId = req.user.id;
@@ -37,12 +69,19 @@ export const updateEntry = async (req, res) => {
     await db.query('UPDATE diary SET text = ? WHERE id = ? AND userId = ?', [text, id, userId]);
     res.json({ message: 'Entry updated' });
   } catch (err) {
-    console.error('Failed to update entry', err);
-    res.status(500).json({ message: 'Failed to update entry' });
+    next(err); // Pass the error to the global error handler
   }
 };
 
-export const deleteEntry = async (req, res) => {
+/**
+ * Delete a diary entry.
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @returns {Promise<void>}
+ */
+export const deleteEntry = async (req, res, next) => {
   const { id } = req.params;
   const userId = req.user.id;
 
@@ -50,7 +89,6 @@ export const deleteEntry = async (req, res) => {
     await db.query('DELETE FROM diary WHERE id = ? AND userId = ?', [id, userId]);
     res.json({ message: 'Entry deleted' });
   } catch (err) {
-    console.error('Failed to delete entry', err);
-    res.status(500).json({ message: 'Failed to delete entry' });
+    next(err); // Pass the error to the global error handler
   }
 };

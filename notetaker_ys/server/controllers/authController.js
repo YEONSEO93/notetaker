@@ -1,11 +1,45 @@
-
 // server/controllers/authController.js
+
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { db } from '../index.js';
 import { validationResult } from 'express-validator';
 
-export const signup = async (req, res) => {
+/**
+ * @swagger
+ * /auth/signup:
+ *   post:
+ *     summary: Sign up a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *               - name
+ *               - email
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Internal server error
+ */
+export const signup = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -25,12 +59,39 @@ export const signup = async (req, res) => {
     if (err.code === 'ER_DUP_ENTRY') {
       return res.status(400).json({ message: 'Username already exists' });
     }
-    console.error('Error during signup:', err);
-    res.status(500).json({ message: 'Failed to sign up' });
+    next(err); // Pass the error to the global error handler
   }
 };
 
-export const login = async (req, res) => {
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Log in a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User logged in successfully
+ *       400:
+ *         description: Invalid credentials
+ *       500:
+ *         description: Internal server error
+ */
+export const login = async (req, res, next) => {
   const { username, password } = req.body;
 
   try {
@@ -48,8 +109,6 @@ export const login = async (req, res) => {
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token, user: { id: user.id, username: user.username, name: user.name, email: user.email } });
   } catch (err) {
-    console.error('Error during login:', err);
-    res.status(500).json({ message: 'Server error' });
+    next(err); // Pass the error to the global error handler
   }
 };
-
