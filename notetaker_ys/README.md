@@ -106,3 +106,4 @@ VS Code
 Git and GitHub
 Swagger
 Expo Go
+mySQL
