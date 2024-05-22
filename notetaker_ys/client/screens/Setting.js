@@ -1,5 +1,4 @@
-
-// // screens/Setting.js
+// screens/Setting.js
 
 import React, { useContext, useState } from 'react';
 import { ScrollView, Switch, Modal } from 'react-native';

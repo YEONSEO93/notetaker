@@ -7,6 +7,8 @@ export const StyledView = styled.View`
   flex: 1;
   padding: 0px 30px;
   padding-top: 100px;
+  padding-bottom: 80px;
+
   background-color: ${(props) => props.theme.bgColor || colors.white};
 `;
 
@@ -52,6 +54,3 @@ export const IconContainer = styled.View`
   align-items: center;
   justify-content: center;
 `;
-
-
-

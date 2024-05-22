@@ -44,6 +44,14 @@ const TabNavigator = () => {
         tabBarLabelStyle: {
           fontSize: textSize,
         },
+        headerShown: true, // Show the header for each tab
+        headerStyle: {
+          backgroundColor: theme.bgColor,
+        },
+        headerTintColor: theme.textColor,
+        headerTitleStyle: {
+          color: theme.textColor,
+        },
       })}
     >
       <Tab.Screen name="Home" component={Home} />
@@ -55,12 +63,23 @@ const TabNavigator = () => {
 
 const AppNavigator = () => {
   const { user } = useContext(AuthContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false, presentation: 'modal' }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.bgColor,
+        },
+        headerTintColor: theme.textColor,
+        headerTitleStyle: {
+          color: theme.textColor,
+        },
+      }}
+    >
       {user ? (
         <>
-          <Stack.Screen name="Tabs" component={TabNavigator} />
+          <Stack.Screen name=" " component={TabNavigator} options={{ headerShown: false }} />
           <Stack.Screen name="Write" component={Write} />
           <Stack.Screen name="About" component={About} />
           <Stack.Screen name="Licenses" component={Licenses} />
@@ -76,8 +95,6 @@ const AppNavigator = () => {
 };
 
 const Navigator = () => {
-  const { theme } = useContext(ThemeContext);
-
   return (
     <NavigationContainer>
       <AppNavigator />
@@ -86,3 +103,5 @@ const Navigator = () => {
 };
 
 export default Navigator;
+
+

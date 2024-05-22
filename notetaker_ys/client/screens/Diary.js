@@ -1,5 +1,5 @@
-
 // screens/Diary.js
+
 import React, { useEffect, useState, useContext } from 'react';
 import { FlatList, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -127,4 +127,3 @@ const Diary = () => {
 };
 
 export default Diary;
-

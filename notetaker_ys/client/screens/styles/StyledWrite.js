@@ -19,12 +19,12 @@ export const Title = styled.Text`
 `;
 
 export const TextInput = styled.TextInput`
-  background-color: white;
+  background-color: ${(props) => props.theme.inputBgColor || colors.input_bg_lightmode};
   border-radius: 20px;
   padding: 10px 20px;
   font-size: ${(props) => props.textSize}px;
   box-shadow: 1px 1px 3px rgba(41, 30, 95, 0.2);
-  color: ${(props) => props.theme.input_bg_lightmode || colors.input_bg_lightmode};
+  color: ${(props) => props.theme.textColor || colors.textColor};
 `;
 
 export const Btn = styled.TouchableOpacity`

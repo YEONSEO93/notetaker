@@ -19,6 +19,12 @@ export const ThemeProvider = ({ children }) => {
     btnColor: isDarkMode ? colors.btn_darkmode : colors.btnColor,
     inputBgColor: isDarkMode ? colors.input_bg_darkmode : colors.input_bg_lightmode,
     white: isDarkMode ? colors.bg_darkmode : colors.white,
+    statusBarStyle: isDarkMode ? 'light' : 'dark',
+    borderColor: isDarkMode ? colors.bgColor : colors.bg_darkmode,
+    placeholderTextColor: isDarkMode ? colors.input_bg_lightmode : colors.input_bg_darkmode,
+
+
+
   };
 
   const textSize = isLargeText ? 20 : 15;
@@ -29,6 +35,4 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
-
-
 

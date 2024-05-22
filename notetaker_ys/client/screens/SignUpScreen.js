@@ -1,9 +1,8 @@
-
 // SignUpScreen.js
 import React, { useState, useContext } from 'react';
-import { Container, Title, Input, ErrorText, SignUpButton, ButtonText } from './styles/StyledSignUp/';
+import { Container, Title, Input, ErrorText, SignUpButton, ButtonText } from './styles/StyledSignUp';
 import { AuthContext } from '../context/AuthContext';
-import { ThemeContext } from '../context/ThemeContext'; // Assuming you want to apply theming as well
+import { ThemeContext } from '../context/ThemeContext';
 
 const SignUpScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -12,7 +11,7 @@ const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const { signup } = useContext(AuthContext);
-  const { theme, textSize } = useContext(ThemeContext); // For theming
+  const { theme, textSize } = useContext(ThemeContext);
 
   const handleSignUp = async () => {
     try {
@@ -33,6 +32,7 @@ const SignUpScreen = ({ navigation }) => {
         placeholder="Username"
         value={username}
         onChangeText={setUsername}
+        placeholderTextColor={theme.placeholderTextColor}
         theme={theme}
         textSize={textSize}
       />
@@ -41,6 +41,7 @@ const SignUpScreen = ({ navigation }) => {
         secureTextEntry
         value={password}
         onChangeText={setPassword}
+        placeholderTextColor={theme.placeholderTextColor}
         theme={theme}
         textSize={textSize}
       />
@@ -48,6 +49,7 @@ const SignUpScreen = ({ navigation }) => {
         placeholder="Name"
         value={name}
         onChangeText={setName}
+        placeholderTextColor={theme.placeholderTextColor}
         theme={theme}
         textSize={textSize}
       />
@@ -55,6 +57,7 @@ const SignUpScreen = ({ navigation }) => {
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
+        placeholderTextColor={theme.placeholderTextColor}
         theme={theme}
         textSize={textSize}
       />
@@ -66,4 +69,3 @@ const SignUpScreen = ({ navigation }) => {
 };
 
 export default SignUpScreen;
-

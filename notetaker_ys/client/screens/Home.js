@@ -6,11 +6,11 @@ import { ThemeContext } from '../context/ThemeContext';
 import { StatusBar } from 'expo-status-bar';
 
 const Home = ({ navigation }) => {
-  const { theme, textSize } = useContext(ThemeContext);
+  const { theme, textSize, isDarkMode } = useContext(ThemeContext);
 
   return (
     <StyledView style={{ backgroundColor: theme.bgColor }}>
-      <StatusBar style={theme.isDarkMode ? 'light' : 'dark'} />
+      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
       <MainTitle style={{ color: theme.textColor, fontSize: textSize * 3 }}>Notetaker</MainTitle>
       <SubTitle style={{ color: theme.textColor, fontSize: textSize * 1.25 }}>Created By Yeonseo🪻</SubTitle>
       <IconButton onPress={() => navigation.navigate("Write")} style={{ backgroundColor: theme.btnColor }}>
@@ -23,4 +23,3 @@ const Home = ({ navigation }) => {
 };
 
 export default Home;
-

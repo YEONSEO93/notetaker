@@ -1,4 +1,3 @@
-
 // styles/StyledDiary.js
 
 import styled from 'styled-components/native';

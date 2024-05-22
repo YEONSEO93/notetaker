@@ -24,6 +24,20 @@ To contribute to the development of the Notetaker App, follow these steps:
 - Responsive and user-friendly interface
 - API documentation using Swagger
 
+## Screens
+
+### Main Screens
+
+- **Home**: Displays the main interface with options to navigate to different sections of the app.
+- **Diary**: Allows users to view, create, update, and delete diary entries.
+- **Write**: A dedicated screen for writing new diary entries.
+- **Setting**: Provides settings options such as dark mode and large text mode, as well as account management.
+
+### Additional Screens
+
+- **About**: Provides information about the application.
+- **Licenses**: Displays the open-source licenses used in the application.
+
 ## Dependencies
 
 ### Mobile App
@@ -72,12 +86,22 @@ nodemon start
 cd client
 npx expo start
 
-## API Documentation
+## Reporting Issues
 
-http://localhost:3000/api-docs
+To report issues:
+
+- Navigate to the [Issues tab](https://github.com/YEONSEO93/notetaker_ys/issues) of the repository.
+- Click on 'New Issue'.
+- Fill out the issue template with as much information as possible.
+- Submit the form.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This version is concise and contains all the necessary information without the additional summary.
+## [Tools Used]
+
+VS Code
+Git and GitHub
+Swagger
+Expo Go
