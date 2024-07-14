@@ -11,8 +11,8 @@ const Home = ({ navigation }) => {
   return (
     <StyledView style={{ backgroundColor: theme.bgColor }}>
       <StatusBar style={isDarkMode ? 'light' : 'dark'} />
-      <MainTitle style={{ color: theme.textColor, fontSize: textSize * 3 }}>Notetaker</MainTitle>
-      <SubTitle style={{ color: theme.textColor, fontSize: textSize * 1.25 }}>Created By Yeonseo🪻</SubTitle>
+      <MainTitle style={{ color: theme.textColor, fontSize: textSize * 3 }}>Daily Note</MainTitle>
+      <SubTitle style={{ color: theme.textColor, fontSize: textSize * 1.25 }}>What's New?🪻</SubTitle>
       <IconButton onPress={() => navigation.navigate("Write")} style={{ backgroundColor: theme.btnColor }}>
         <IconContainer>
           <Ionicons name="star" size={24} color={theme.white} />

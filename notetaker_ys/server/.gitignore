@@ -28,6 +28,7 @@ yarn-error.*
 
 # Ignore local environment files
 .env*.local
+.env
 
 # Ignore TypeScript build artifacts
 *.tsbuildinfo
